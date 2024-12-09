@@ -66,6 +66,15 @@ def victory_for(board, letter):
 	return None
 
 
+def draw_move_machine(board):
+	free = make_list_of_free_fields(board)
+	count = len(free)
+	if count > 0:
+		this = randrange(count)  # devuelve un numero aleatorio
+		row, col = free[this]
+		board[row][col] = 'X'
+
+
 def welcome_title():
 	print("\nWelcome to Tic-Tac-Toe!\n")
 	print("-------" * 2)
