@@ -87,6 +87,25 @@ def main():
 	board[1][1] = "X"
 	free = make_list_of_free_fields(board)
 	user_turn = True
+	while len(free):
+		display_board(board)
+		if user_turn:
+			enter_move_user(board)
+			victory = victory_for(board, "O")
+		else:
+			draw_move_machine(board)
+			victory = victory_for(board, 'X')
+		if victory != None:
+			break
+		user_turn = not user_turn
+		free = make_list_of_free_fields(board)
+	display_board(board)
+	if victory == 'you':
+		print("¡Has ganado!")
+	elif victory == 'machine':
+		print("¡He ganado!")
+	else:
+		print("¡Empate!")
 
 
 if __name__ == "__main__":
