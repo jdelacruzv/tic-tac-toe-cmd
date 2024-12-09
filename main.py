@@ -44,6 +44,28 @@ def make_list_of_free_fields(board):
 	return free
 
 
+def victory_for(board, letter):
+	if letter == "X":
+		who_won = "machine"
+	elif letter == "O":
+		who_won = "you"
+	else:
+		who_won = None
+	cross1 = cross2 = True  # para las diagonales
+	for rc in range(3):  # rc = row, col
+		if board[rc][0] == letter and board[rc][1] == letter and board[rc][2] == letter:  # check row rc
+			return who_won
+		if board[0][rc] == letter and board[1][rc] == letter and board[2][rc] == letter:  # check column rc
+			return who_won
+		if board[rc][rc] != letter:  # revisar la primer diagonal
+			cross1 = False
+		if board[2 - rc][2 - rc] != letter:  # revisar la segunda diagonal
+			cross2 = False
+	if cross1 or cross2:
+		return who_won
+	return None
+
+
 def welcome_title():
 	print("\nWelcome to Tic-Tac-Toe!\n")
 	print("-------" * 2)
