@@ -35,6 +35,15 @@ def enter_move_user(board):
 	board[row][col] = "O"
 
 
+def make_list_of_free_fields(board):
+	free = []
+	for row in range(3):
+		for col in range(3):
+			if board[row][col] not in ["O", "X"]:
+				free.append((row, col))
+	return free
+
+
 def welcome_title():
 	print("\nWelcome to Tic-Tac-Toe!\n")
 	print("-------" * 2)
@@ -45,6 +54,8 @@ def welcome_title():
 def main():
 	board = [[3 * j + i + 1 for i in range(3)] for j in range(3)]
 	board[1][1] = "X"
+	free = make_list_of_free_fields(board)
+	user_turn = True
 
 
 if __name__ == "__main__":
